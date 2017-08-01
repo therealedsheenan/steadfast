@@ -12,6 +12,7 @@ const reload = browserSync.reload;
 // Lint JavaScript
 gulp.task('lint', () =>
   gulp.src(['src/scripts/**/*.js','!node_modules/**'])
+    .pipe($.plumber())
     .pipe($.eslint())
     .pipe($.eslint.format())
     .pipe($.if(!browserSync.active, $.eslint.failAfterError()))
@@ -20,6 +21,7 @@ gulp.task('lint', () =>
 // Optimize images
 gulp.task('images', () =>
   gulp.src('src/images/**/*')
+    .pipe($.plumber())
     .pipe($.cache($.imagemin({
       progressive: true,
       interlaced: true
@@ -36,7 +38,9 @@ gulp.task('copy', () =>
     'node_modules/apache-server-configs/public/.htaccess'
   ], {
     dot: true
-  }).pipe(gulp.dest('public'))
+  })
+    .pipe($.plumber())
+    .pipe(gulp.dest('public'))
     .pipe($.size({title: 'copy'}))
 );
 
@@ -59,6 +63,7 @@ gulp.task('styles', () => {
     'src/styles/**/*.scss',
     'src/styles/**/*.css'
   ])
+    .pipe($.plumber())
     .pipe($.newer('.tmp/styles'))
     .pipe($.sourcemaps.init())
     .pipe($.sass({
@@ -79,6 +84,7 @@ gulp.task('scripts', () =>
     gulp.src([
       './src/scripts/main.js'
     ])
+      .pipe($.plumber())
       .pipe($.newer('.tmp/scripts'))
       .pipe($.sourcemaps.init())
       .pipe($.babel())
@@ -96,25 +102,18 @@ gulp.task('scripts', () =>
 // Scan your HTML for assets & optimize them
 gulp.task('html', () => {
   return gulp.src('src/**/*.html')
-    .pipe($.useref({
-      searchPath: '{.tmp,src}',
-      noAssets: true
+    .pipe($.plumber())
+    .pipe($.hb({
+      partials: './src/partials/**/*.hbs',
+      helpers: './src/helpers/*.js',
+      data: './src/data/**/*.{js,json}'
     }))
-
-    // Minify any HTML
-    .pipe($.if('*.html', $.htmlmin({
-      removeComments: true,
-      collapseWhitespace: true,
-      collapseBooleanAttributes: true,
-      removeAttributeQuotes: true,
-      removeRedundantAttributes: true,
-      removeEmptyAttributes: true,
-      removeScriptTypeAttributes: true,
-      removeStyleLinkTypeAttributes: true,
-      removeOptionalTags: true
-    })))
+    // .pipe($.useref({
+    //   searchPath: '{.tmp,src}',
+    //   noAssets: true
+    // }))
     // Output files
-    .pipe($.if('*.html', $.size({title: 'html', showFiles: true})))
+    // .pipe($.if('*.html', $.size({title: 'html', showFiles: true})))
     .pipe(gulp.dest('public'));
 });
 
@@ -122,18 +121,19 @@ gulp.task('html', () => {
 gulp.task('clean', () => del(['.tmp', 'public/*', '!public/.git'], {dot: true}));
 
 // default script, development mode
-gulp.task('default', ['scripts', 'styles'], () => {
+gulp.task('default', ['html', 'scripts', 'styles'], () => {
   browserSync({
     notify: false,
     // Customize the Browsersync console logging prefix
     logPrefix: 'WSK',
     // Allow scroll syncing across breakpoints
     scrollElementMapping: ['main', '.mdl-layout'],
-    server: ['.tmp', 'src'],
+    server: ['.tmp', 'public'],
     port: 4200
   });
 
-  gulp.watch(['src/**/*.html'], reload);
+  gulp.watch(['src/**/*.html'], ['html', reload]);
+  gulp.watch(['src/**/*.hbs'], ['html', reload]);
   gulp.watch(['src/styles/**/*.{scss,css}'], ['styles', reload]);
   gulp.watch(['src/scripts/**/*.js'], ['lint', 'scripts', reload]);
   gulp.watch(['src/images/**/*'], reload);
@@ -158,7 +158,6 @@ gulp.task('production', ['clean'], cb =>
     cb
   )
 );
-
 
 // Load custom tasks from the `tasks` directory
 // Run: `npm install --save-dev require-dir` from the command-line

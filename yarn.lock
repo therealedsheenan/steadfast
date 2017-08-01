@@ -841,6 +841,10 @@ callsite@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/callsite/-/callsite-1.0.0.tgz#280398e5d664bd74038b6f0905153e6e8af1bc20"
 
+callsites@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/callsites/-/callsites-1.0.1.tgz#c14c24188ce8e1d6a030b4c3c942e6ba895b6a1a"
+
 camel-case@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/camel-case/-/camel-case-3.0.0.tgz#ca3c3688a4e9cf3a4cda777dc4dcbc713249cf73"
@@ -976,6 +980,14 @@ clean-css@3.4.x:
   dependencies:
     commander "2.8.x"
     source-map "0.4.x"
+
+cli-columns@^1.0.6:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/cli-columns/-/cli-columns-1.1.0.tgz#3c7b34c05e6c374d93b18b24cd674eb83376a994"
+  dependencies:
+    object-assign "^4.1.1"
+    string-width "^1.0.2"
+    strip-ansi "^3.0.1"
 
 cli-cursor@^1.0.1:
   version "1.0.2"
@@ -2314,6 +2326,16 @@ globby@^5.0.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
+globby@^6.0.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/globby/-/globby-6.1.0.tgz#f5a6d70e8395e21c858fb0489d64df02424d506c"
+  dependencies:
+    array-union "^1.0.1"
+    glob "^7.0.3"
+    object-assign "^4.0.1"
+    pify "^2.0.0"
+    pinkie-promise "^2.0.0"
+
 globule@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/globule/-/globule-1.2.0.tgz#1dc49c6822dd9e8a2fa00ba2a295006e8664bd09"
@@ -2444,6 +2466,17 @@ gulp-eslint@^1.1.1:
     gulp-util "^3.0.6"
     object-assign "^4.0.1"
 
+gulp-hb@^6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/gulp-hb/-/gulp-hb-6.0.2.tgz#130c797bd11fedf38b5ef12ea243ece7db7c3dcf"
+  dependencies:
+    cli-columns "^1.0.6"
+    gulp-util "^3.0.8"
+    handlebars "^4.0.6"
+    handlebars-wax "^5.0.0"
+    object-assign "^4.1.1"
+    through2 "^2.0.3"
+
 gulp-htmlmin@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/gulp-htmlmin/-/gulp-htmlmin-2.0.0.tgz#12ca63576437aadfc859d2addfa41c38efcea869"
@@ -2500,6 +2533,13 @@ gulp-newer@^1.2.0:
     glob "^7.0.3"
     gulp-util "^3.0.7"
     kew "^0.7.0"
+
+gulp-plumber@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/gulp-plumber/-/gulp-plumber-1.1.0.tgz#f12176c2d0422f60306c242fff6a01a394faba09"
+  dependencies:
+    gulp-util "^3"
+    through2 "^2"
 
 gulp-rename@^1.2.0:
   version "1.2.2"
@@ -2580,7 +2620,7 @@ gulp-useref@^3.1.0:
     useref "^1.2.0"
     vinyl-fs "^2.2.1"
 
-gulp-util@*, gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.1, gulp-util@^3.0.6, gulp-util@^3.0.7:
+gulp-util@*, gulp-util@^3, gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.1, gulp-util@^3.0.6, gulp-util@^3.0.7, gulp-util@^3.0.8:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
   dependencies:
@@ -2633,7 +2673,14 @@ gzip-size@^3.0.0:
   dependencies:
     duplexer "^0.1.1"
 
-handlebars@^4.0.0:
+handlebars-wax@^5.0.0:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/handlebars-wax/-/handlebars-wax-5.1.1.tgz#43198019fa5ae3d291aa8a319c2afb4d75edb683"
+  dependencies:
+    object-assign "^4.1.1"
+    require-glob "^3.2.0"
+
+handlebars@^4.0.0, handlebars@^4.0.6:
   version "4.0.10"
   resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.0.10.tgz#3d30c718b09a3d96f23ea4cc1f403c4d3ba9ff4f"
   dependencies:
@@ -4037,7 +4084,7 @@ object-assign@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-3.0.0.tgz#9bedd5ca0897949bca47e7ff408062d549f587f2"
 
-object-assign@^4.0.0, object-assign@^4.0.1, object-assign@^4.1.0:
+object-assign@^4.0.0, object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
 
@@ -4187,6 +4234,12 @@ param-case@^2.1.0:
   resolved "https://registry.yarnpkg.com/param-case/-/param-case-2.1.1.tgz#df94fd8cf6531ecf75e6bef9a0858fbc72be2247"
   dependencies:
     no-case "^2.2.0"
+
+parent-module@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/parent-module/-/parent-module-0.1.0.tgz#b5292863a1e8c476ecf857e7d75c98920b24b8a6"
+  dependencies:
+    callsites "^1.0.0"
 
 parse-filepath@^1.0.1:
   version "1.0.1"
@@ -4833,6 +4886,14 @@ require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
 
+require-glob@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/require-glob/-/require-glob-3.2.0.tgz#90bfe2c8efb4b9f972eb9a3f5e580832e04f64d3"
+  dependencies:
+    glob-parent "^3.0.0"
+    globby "^6.0.0"
+    parent-module "^0.1.0"
+
 require-main-filename@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/require-main-filename/-/require-main-filename-1.0.1.tgz#97f717b69d48784f5f526a6c5aa8ffdda055a4d1"
@@ -5436,7 +5497,7 @@ through2-filter@^2.0.0:
     through2 "~2.0.0"
     xtend "~4.0.0"
 
-through2@2.X, through2@^2.0.0, through2@^2.0.1, through2@^2.0.3, through2@~2.0.0:
+through2@2.X, through2@^2, through2@^2.0.0, through2@^2.0.1, through2@^2.0.3, through2@~2.0.0:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/through2/-/through2-2.0.3.tgz#0004569b37c7c74ba39c43f3ced78d1ad94140be"
   dependencies:
